@@ -1,0 +1,22 @@
+{
+  "name": "koa-exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noreng/koa-exercise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noreng/koa-exercise/issues"
+  },
+  "homepage": "https://github.com/noreng/koa-exercise#readme",
+  "dependencies": {
+    "koa": "^1.2.0"
+  }
+}
