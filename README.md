@@ -3,7 +3,7 @@
 ## CURL commands to test
 ### Create
 ```bash
-curl --data '{"create": "item"}' http://localhost:8000/api/create -H 'content-type:application/json'
+curl --data '{"name": "New Item"}' http://localhost:8000/api/create -H 'content-type:application/json'
 ```
 
 ### Read
@@ -13,10 +13,10 @@ curl -H 'content-type:application/json' http://localhost:8000/api/read
 
 ### Update
 ```bash
-curl -X 'PUT' --data '{"update": "item"}' -H 'content-type:application/json' http://localhost:8000/api/update/8888
+curl -X 'PUT' --data '{"name": "Updated item"}' -H 'content-type:application/json' http://localhost:8000/api/update/1
 ```
 
 ### Delete
 ```bash
-curl  -X 'DELETE' http://localhost:8000/api/delete/9999 -H 'content-type:application/json'
+curl  -X 'DELETE' http://localhost:8000/api/delete/2 -H 'content-type:application/json'
 ```
