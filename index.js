@@ -1,8 +1,13 @@
-var koa = require('koa');
-var app = koa();
+const koa = require('koa');
+const router = require('koa-route');
+const model = require('./model');
 
-app.use(function *() {
-  this.body ='Hello World';
-});
+const app = koa();
+const port = 8000;
 
-app.listen(8000, () => console.log('Listening'));
+app.use(router.post('/api/create', model.create));
+app.use(router.get('/api/read', model.read));
+app.use(router.put('/api/update/:id', model.update));
+app.use(router.del('/api/delete/:id', model.remove));
+
+app.listen(port, () => console.log(`Listening on port ${port}`));
