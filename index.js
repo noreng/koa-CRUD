@@ -1,9 +1,12 @@
 const koa = require('koa');
 const router = require('koa-route');
+const bodyParser = require('koa-bodyparser');
 const model = require('./model');
 
 const app = koa();
 const port = 8000;
+
+app.use(bodyParser());
 
 app.use(router.post('/api/create', model.create));
 app.use(router.get('/api/read', model.read));
