@@ -2,23 +2,23 @@
 
 const itemModel = require('../models/item.model');
 
-exports.create = function *() {
+exports.create = function* () {
   var item = this.request.body;
-  itemModel.addItem(item.name);
-  this.body = itemModel.getItems();
+  yield itemModel.addItem(item.name);
+  this.body = yield itemModel.getItems();
 };
 
-exports.read = function *() {
-  this.body = itemModel.getItems();
+exports.read = function* () {
+  this.body = yield itemModel.getItems();
 };
 
-exports.update = function *(id) {
+exports.update = function* (id) {
   var newName = this.request.body.name;
-  itemModel.updateItem(id, newName);
-  this.body = itemModel.getItems();
+  yield itemModel.updateItem(id, newName);
+  this.body = yield itemModel.getItems();
 };
 
-exports.remove = function *(id) {
-  itemModel.removeItem(id);
-  this.body = itemModel.getItems();
+exports.remove = function* (id) {
+  yield itemModel.removeItem(id);
+  this.body = yield itemModel.getItems();
 };

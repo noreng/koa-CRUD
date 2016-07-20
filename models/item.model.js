@@ -1,37 +1,22 @@
 'use strict';
 
-let items = [];
+let query= require('../db/index').query;
 
-let getNextId = (function () {
-  var id = 1;
-  return () => id++;
-})();
-
-exports.getItems = function () {
-  return items;
-}
-
-exports.addItem = function (name) {
-  items.push({
-    id: getNextId(),
-    name
-  });
+exports.getItems = function* () {
+  return yield query('SELECT * FROM items');
 };
 
-exports.updateItem = function (id, name) {
-  id = Number(id);
-  items.map((item) => {
-    if (item.id === id) {
-      item.name = name;
-    }
-  });
+exports.addItem = function* (name) {
+  let sql = `INSERT INTO items (name) VALUES ('${name}')`;
+  return yield query(sql);
 };
 
-exports.removeItem = function (id) {
-  id = Number(id);
-  items = items.filter((item) => item.id !== id);
+exports.updateItem = function* (id, name) {
+  let sql = `UPDATE items SET name = '${name}' WHERE id = ${id}`;
+  return yield query(sql);
 };
 
-exports.addItem('First Item');
-exports.addItem('Second Item');
-exports.addItem('Third Item');
+exports.removeItem = function* (id) {
+  let sql = `DELETE FROM items WHERE id = ${id}`;
+  return yield query(sql);
+};
