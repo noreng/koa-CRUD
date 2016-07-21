@@ -1,6 +1,7 @@
 'use strict';
 
 const koa = require('koa');
+const serve = require('koa-static');
 const router = require('koa-route');
 const bodyParser = require('koa-bodyparser');
 const itemCtrl = require('./controllers/item.ctrl');
@@ -9,6 +10,7 @@ const app = koa();
 const port = 8000;
 
 app.use(bodyParser());
+app.use(serve(__dirname + '/client'));
 
 app.use(function* (next) {
   try {
