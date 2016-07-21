@@ -3,7 +3,7 @@
 const itemModel = require('../models/item.model');
 
 exports.create = function* () {
-  var item = this.request.body;
+  let item = this.request.body;
   yield itemModel.addItem(item.name);
   this.body = yield itemModel.getItems();
 };
@@ -13,7 +13,7 @@ exports.read = function* () {
 };
 
 exports.update = function* (id) {
-  var newName = this.request.body.name;
+  let newName = this.request.body.name;
   yield itemModel.updateItem(id, newName);
   this.body = yield itemModel.getItems();
 };

@@ -3,7 +3,7 @@
 let query= require('../db/index').query;
 
 exports.getItems = function* () {
-  return yield query('SELECT * FROM items');
+  return yield query('SELECT id, name FROM items');
 };
 
 exports.addItem = function* (name) {

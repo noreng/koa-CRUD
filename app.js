@@ -1,3 +1,5 @@
+'use strict';
+
 const koa = require('koa');
 const router = require('koa-route');
 const bodyParser = require('koa-bodyparser');
