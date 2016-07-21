@@ -8,6 +8,16 @@ const port = 8000;
 
 app.use(bodyParser());
 
+app.use(function* (next) {
+  try {
+    yield next;
+  } catch (err) {
+    this.status = 500;
+    this.body = 'Catastrophic error!';
+    console.log(err);
+  }
+});
+
 app.use(router.post('/api/create', itemCtrl.create));
 app.use(router.get('/api/read', itemCtrl.read));
 app.use(router.put('/api/update/:id', itemCtrl.update));
