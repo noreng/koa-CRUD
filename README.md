@@ -1,10 +1,5 @@
 # koa-CRUD
 
-## Setup postgreSQL database
-1. Install [PostgreSQL](https://www.postgresql.org/download/)
-2. Setup the database with `psql -U postgres -a -f db/schema.sql`
-3. Enjoy!
-
 ## CURL commands to test
 ### Create
 ```bash

@@ -1,24 +1,24 @@
 'use strict';
 
-const itemModel = require('../models/item.model');
+const items = require('../services/item.service');
 
 exports.create = function* () {
   let item = this.request.body;
-  yield itemModel.addItem(item.name);
-  this.body = yield itemModel.getItems();
+  yield items.addItem(item.name);
+  this.body = yield items.getItems();
 };
 
 exports.read = function* () {
-  this.body = yield itemModel.getItems();
+  this.body = yield items.getItems();
 };
 
 exports.update = function* (id) {
   let newName = this.request.body.name;
-  yield itemModel.updateItem(id, newName);
-  this.body = yield itemModel.getItems();
+  yield items.updateItem(id, newName);
+  this.body = yield items.getItems();
 };
 
 exports.remove = function* (id) {
-  yield itemModel.removeItem(id);
-  this.body = yield itemModel.getItems();
+  yield items.removeItem(id);
+  this.body = yield items.getItems();
 };
