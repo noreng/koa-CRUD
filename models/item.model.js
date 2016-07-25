@@ -1,22 +1,33 @@
 'use strict';
 
-let query= require('../db/index').query;
+let Item = require('../db/index');
 
 exports.getItems = function* () {
-  return yield query('SELECT id, name FROM items');
+  return yield Item.findAll({
+    attributes: ['id', 'name']
+  });
 };
 
 exports.addItem = function* (name) {
-  let sql = `INSERT INTO items (name) VALUES ('${name}')`;
-  return yield query(sql);
+  return yield Item.create({
+    name: name
+  });
 };
 
 exports.updateItem = function* (id, name) {
-  let sql = `UPDATE items SET name = '${name}' WHERE id = ${id}`;
-  return yield query(sql);
+  return yield Item.update({
+    name: name
+  }, {
+    where: {
+      id: id
+    }
+  });
 };
 
 exports.removeItem = function* (id) {
-  let sql = `DELETE FROM items WHERE id = ${id}`;
-  return yield query(sql);
+  return yield Item.destroy({
+    where: {
+      id: id
+    }
+  });
 };

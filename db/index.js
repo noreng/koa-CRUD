@@ -1,13 +1,26 @@
 'use strict';
 
-const pg = require('co-pg')(require('pg'));
+const Sequelize = require('sequelize');
 
-const connection_url = 'postgres://postgres:postgres@localhost/koa_crud';
+const sequelize = new Sequelize('postgres://postgres:postgres@localhost/koa_crud');
 
-exports.query = function* (sql) {
-  let client = new pg.Client(connection_url);
-  yield client.connectPromise();
-  let result = yield client.queryPromise(sql);
-  client.end();
-  return result.rows;
-};
+sequelize
+  .authenticate()
+  .then(() => console.log('Connection has been established successfully.'))
+  .catch((err) => console.log('Unable to connect to the database:', err));
+  
+const Item = sequelize.define('item', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+});
+
+sequelize.sync();
+
+module.exports = Item;
