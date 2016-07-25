@@ -1,6 +1,6 @@
 'use strict';
 
-let Item = require('../db/index');
+let Item = require('../db/index').item;
 
 exports.getItems = function* () {
   return yield Item.findAll({

@@ -5,6 +5,7 @@ const serve = require('koa-static');
 const router = require('koa-route');
 const bodyParser = require('koa-bodyparser');
 const itemCtrl = require('./controllers/item.ctrl');
+const db = require('./db');
 
 const app = koa();
 const port = 8000;
@@ -27,4 +28,7 @@ app.use(router.get('/api/read', itemCtrl.read));
 app.use(router.put('/api/update/:id', itemCtrl.update));
 app.use(router.del('/api/delete/:id', itemCtrl.remove));
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+db.sequelize.sync()
+  .then(() => {
+    app.listen(port, () => console.log(`Listening on port ${port}`));
+  });
